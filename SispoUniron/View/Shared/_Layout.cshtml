@@ -1,0 +1,30 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+
+
+    <title> @Page.Title</title>
+</head>
+<body>
+    <div class="container">
+
+        @RenderPage("Menu.cshtml")
+
+    </div>
+
+    <div class="container">
+        @RenderBody()
+
+    </div>
+
+    <div class="container">
+
+        @RenderPage("Rodape.cshtml")
+
+    </div>
+
+</body>
+</html>
