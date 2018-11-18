@@ -30,7 +30,7 @@ public class Conexao
         }
     }
 
-
-    public Database banco = new Database.Open("conexaoBanco");
+    public static string ConexaoString = "conexaoBanco";
+    Database database = Database.Open(ConexaoString);
 
 }
