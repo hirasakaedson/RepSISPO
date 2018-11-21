@@ -1,0 +1,101 @@
+﻿@{
+    Page.Title = "Disciplina Cadastradas";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+    IList<Aluno> listaAlunos = new AlunoBO().ListaAlunos();
+}
+
+<div class="row">
+    <div class="col-12">
+        <h1></h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-3" style="padding-top:30px;">
+
+                <a href="~/View/Aluno/IndexAluno.cshtml">
+                    <img src="~/Img/aluno.png" width="80" height="80" alt="">
+                </a>
+
+            </div>
+
+
+            <div class="col-9" style="padding-top:30px;">
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>NOME</th>
+                                <th>MATRÍCULA</th>
+                                <th>CPF</th>
+                                <th>AÇÕES</th>
+                            </tr>
+                            @foreach (var item in listaAlunos)
+            {
+                                <tr id="@item.AlunoID">
+                                    <td>@item.Nome </td>
+                                    <td>@item.Matricula </td>
+                                    <td>@item.Cpf </td>
+                                    <td>
+                                        <a href="~/View/Aluno/AltAluno.cshtml?alunoID=@item.AlunoID" class="btn btn-info">Alterar</a> |
+                                        <a href=" #" onclick=" excluirAJAX('@item.AlunoID')" class="btn btn-danger">Excluir</a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="~/View/Aluno/IndexAluno.cshtml" class="btn btn-primary"> Voltar</a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+<script>
+    function excluirAJAX(id)
+    {
+        var xhttp = new XMLHttpRequest(); //instanciando o xmlhttprequest
+        var apagar = confirm("Deseja excluir o registro?");
+        if (apagar == true)
+        {
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {//se estiver tudo ok codigo 200
+                    // Ações na pagina
+                    //para excluir tem que criar um identificador na tr dentro do form
+                    var linha = document.getElementById(id);
+                    linha.parentNode.removeChild(linha);  //parenteNODE uma parte daquela tabela
+
+
+
+                    //LINHA EXCLUIDA document.getElementById("demo").innerHTML = xhttp.responseText;  //dentro do if
+                }
+            };
+            xhttp.open("GET", "ExcluirAluno.cshtml?alunoID=" + id, true);  //trocar filename para a pagina que ele vai
+            xhttp.send();
+
+        }
+
+
+    }
+</script>

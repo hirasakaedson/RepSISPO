@@ -1,0 +1,82 @@
+﻿@{
+    Page.Title = "Alterar Aluno Cadastrado";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+    int id = Convert.ToInt16(Request.QueryString["alunoID"]);
+    Aluno objAluno = new AlunoBO().Buscar(id);
+
+    if (IsPost)
+    {
+        objAluno.AlunoID = Convert.ToInt16(Request.Form["hfAlunoID"]);
+        objAluno.Nome = Request.Form["txtNome"];
+        objAluno.Matricula = Request.Form["txtMatricula"];
+        objAluno.Cpf = Request.Form["txtCPF"];
+        objAluno.Email = Request.Form["txtEmail"];
+
+        bool sucesso = new AlunoBO().Gravar(objAluno);
+
+        if (sucesso)
+        {
+            Page.msgSucesso = "Aluno salvo com sucesso";
+        }
+        else
+        {
+            Page.msgErro = "Erro ao gravar o aluno";
+        }
+    }
+}
+
+<div class="row">
+    <div class="col-12">
+        @if (Page.msgSucesso != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @Page.msgSucesso
+            </div>
+        }
+
+        @if (Page.msgErro != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @Page.msgErro
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <h1>Alterar Aluno</h1>
+    </div>
+</div>
+<form method="post" action="">
+    <div class="row">
+        <div class="col-6">
+            <input type="hidden" id="hfAlunoID" name="hfAlunoID" value="@objAluno.AlunoID" />
+            <label>Nome:</label>
+            <input type="text" name="txtNome" id="txtNome" class="form-control" value="@objAluno.Nome" />
+        </div>
+        <div class="col-6">
+            <label>Matrícula:</label>
+            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" value="@objAluno.Matricula" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <label>CPF:</label>
+            <input type="text" name="txtCPF" id="txtCPF" class="form-control" value="@objAluno.Cpf" />
+        </div>
+        <div class="col-6">
+            <label>E-mail:</label>
+            <input type="email" name="txtEmail" id="txtEmail" class="form-control" value="@objAluno.Email" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-1">
+            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" />
+        </div>
+        <div class="col-1">
+            <a class="btn btn-primary" href="~/View/Curso/CursosCadastrados.cshtml" role="button">Voltar</a>
+        </div>
+    </div>
+</form>
