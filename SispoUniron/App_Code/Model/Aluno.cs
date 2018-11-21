@@ -6,12 +6,9 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de Aluno
 /// </summary>
-public class Aluno
+public class Aluno:Pessoa
 {
-    public Aluno()
-    {
-        //
-        // TODO: Adicionar lógica do construtor aqui
-        //
-    }
+    public int AlunoID { get; set; }
+    public string Ra { get; set; }
+    public Curso Objcurso { get; set; }
 }

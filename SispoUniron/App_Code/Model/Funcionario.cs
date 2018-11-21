@@ -8,10 +8,6 @@ using System.Web;
 /// </summary>
 public class Funcionario
 {
-    public Funcionario()
-    {
-        //
-        // TODO: Adicionar lógica do construtor aqui
-        //
-    }
+    public int FuncionarioID { get; set; }
+    public string Senha { get; set; }
 }

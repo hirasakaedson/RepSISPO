@@ -8,10 +8,14 @@ using System.Web;
 /// </summary>
 public class Curso
 {
-    public Curso()
-    {
-        //
-        // TODO: Adicionar lógica do construtor aqui
-        //
-    }
+    public int CursoID { get; set; }
+    public DateTime DataInicio { get; set; }
+    public DateTime DataFim { get; set; }
+    public string Nome { get; set; }
+    public string Turno { get; set; }
+    public Professor Objprofessor { get; set; }
+    public IList<Aluno> ListaAlunos { get; set; }
+    public IList<Disciplina> ListaDisciplinas { get; set; }
+    public double ValorMensal { get; set; }
+
 }

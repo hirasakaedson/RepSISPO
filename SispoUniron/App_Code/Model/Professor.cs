@@ -6,12 +6,10 @@ using System.Web;
 /// <summary>
 /// Descrição resumida de Professor
 /// </summary>
-public class Professor
+public class Professor:Pessoa
 {
-    public Professor()
-    {
-        //
-        // TODO: Adicionar lógica do construtor aqui
-        //
-    }
+    public int ProfessorID { get; set; }
+    public string Especializacao { get; set; }
+    public Curso Objcurso { get; set; }
+    
 }

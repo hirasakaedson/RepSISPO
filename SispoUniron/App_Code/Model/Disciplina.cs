@@ -8,10 +8,10 @@ using System.Web;
 /// </summary>
 public class Disciplina
 {
-    public Disciplina()
-    {
-        //
-        // TODO: Adicionar lógica do construtor aqui
-        //
-    }
+    public int DisciplinaID { get; set; }
+    public string Nome { get; set; }
+    public IList<Curso> ListaCursos { get; set; }
+
+
+
 }
