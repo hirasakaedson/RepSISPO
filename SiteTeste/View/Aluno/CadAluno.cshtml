@@ -1,0 +1,115 @@
+﻿@{
+    Page.Title = "Cadastro de Disciplinas";
+    Layout = "~/View/Shared/_Layout.cshtml";
+
+    if (IsPost)
+    {
+        Aluno objAluno = new Aluno();
+        objAluno.Nome = Request.Form["txtNome"];
+        objAluno.Matricula = Request.Form["txtMatricula"];
+        objAluno.Cpf = Request.Form["txtCPF"];
+        objAluno.Email = Request.Form["txtEmail"];
+
+        bool sucesso = new AlunoBO().Gravar(objAluno);
+
+        if (sucesso)
+        {
+            Page.msgSucesso = "Aluno salvo com sucesso";
+        }
+        else
+        {
+            Page.msgErro = "Erro ao gravar o aluno";
+        }
+    }
+    <div class="col-12">
+        @if (Page.msgSucesso != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @Page.msgSucesso
+            </div>
+        }
+
+        @if (Page.msgErro != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @Page.msgErro
+            </div>
+        }
+    </div>
+
+}
+
+
+
+<div class="container">
+    <div class="col-12">
+
+        <div class="row">
+            <div class="col-3" style="padding-top:30px;">
+
+                <a href="~/View/Professor/IndexProfessor2.cshtml">
+                    <img src="~/Img/aluno.png" width="80" height="80" alt="">
+                </a>
+
+            </div>
+
+
+            <div class="col-9" style="padding-top:30px;">
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Cadastro de alunos</h1>
+                    </div>
+                </div>
+                <form method="post" action="">
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Nome:</label>
+                            <input type="text" name="txtNome" id="txtNome" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label>Matrícula:</label>
+                            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>CPF:</label>
+                            <input type="text" name="txtCPF" id="txtCPF" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label>E-mail:</label>
+                            <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div style="margin-right:20px" class="col-1">
+                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" "  />
+                        </div>
+                        <div class="col-1">
+                            <a class="btn btn-primary" href="IndexAluno.cshtml" role="button">Voltar</a>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
