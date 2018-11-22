@@ -15,4 +15,11 @@ public class Aluno
     public string Email { get; set; }
     public IList<Emprestimo> ListaEmprestimo { get; set; }
 
+    public bool Gravar()
+    {
+       return new AlunoBO().Gravar(this);
+
+    }
+
+
 }

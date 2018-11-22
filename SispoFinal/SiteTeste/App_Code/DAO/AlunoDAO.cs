@@ -13,12 +13,12 @@ public class AlunoDAO
         int sucesso;
         if (obj.AlunoID == 0)
         {
-            var sql = "Insert Into Alunos(nome,matricula,cpf,email)values(@0,@1,@2,@3)";
+            var sql = "Insert Into Aluno (nome,matricula,cpf,email)values(@0,@1,@2,@3)";
             sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email);
         }
         else
         {
-            var sql = "Update Alunos Set nome=@0, matricula=@1, cpf=@2, email=@3 Where alunoID=@4";
+            var sql = "Update aluno Set nome=@0, matricula=@1, cpf=@2, email=@3 Where alunoID=@4";
             sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email,obj.AlunoID);
         }
         
@@ -30,7 +30,7 @@ public class AlunoDAO
     public IList<Aluno> ListaAlunos()
     {
         IList<Aluno> lista = new List<Aluno>();
-        var sql = "Select * From Alunos";
+        var sql = "Select * From Aluno";
         var resultado = banco.Query(sql);
         if (resultado.Count() > 0)
         {
@@ -59,7 +59,7 @@ public class AlunoDAO
 
     public Aluno Buscar(int alunoID)
     {
-        var sql = "Select * From Alunos Where alunoID = @0";
+        var sql = "Select * From Aluno Where alunoID = @0";
         var resultado = banco.QuerySingle(sql, alunoID);
         Aluno objAluno = new Aluno
         {
@@ -81,5 +81,5 @@ public class AlunoDAO
 
    //DAO acesso aos dados
 
-
+    //testando 
 }
