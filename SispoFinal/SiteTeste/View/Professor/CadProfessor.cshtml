@@ -4,21 +4,24 @@
 
     if (IsPost)
     {
-        Aluno objAluno = new Aluno();
-        objAluno.Nome = Request.Form["txtNome"];
-        objAluno.Matricula = Request.Form["txtMatricula"];
-        objAluno.Cpf = Request.Form["txtCPF"];
-        objAluno.Email = Request.Form["txtEmail"];
+        Professor ObjProfessor = new Professor();
+        ObjProfessor.Nome = Request.Form["txtNome"];
+        ObjProfessor.Matricula = Request.Form["txtMatricula"];
+        ObjProfessor.Cpf = Request.Form["txtCPF"];
+        ObjProfessor.Email = Request.Form["txtEmail"];
+        ObjProfessor.MateriaAula = Request.Form["txtMateriaAula"];
+        ObjProfessor.DataNascimento =Convert.ToDateTime( Request.Form["txtDataNascimento"]);
 
-        bool sucesso = new AlunoBO().Gravar(objAluno);
+
+        bool sucesso = new ProfessorBO().Gravar(ObjProfessor);
 
         if (sucesso)
         {
-            Page.msgSucesso = "Aluno salvo com sucesso";
+            Page.msgSucesso = "Professor salvo com sucesso";
         }
         else
         {
-            Page.msgErro = "Erro ao gravar o aluno";
+            Page.msgErro = "Erro ao gravar o Professor";
         }
     }
     <div class="col-12">
@@ -84,16 +87,31 @@
                             <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
                         </div>
                     </div>
+
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Materia Aula:</label>
+                            <input type="text" name="txtMateriaAula" id="txtMateriaAula" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label>Data de Nascimento</label>
+                            <input type="date" name="txtDataNascimento" id="txtDataNascimento" class="form-control" />
+                        </div>
+                    </div>
+
+
+
                     <br />
                     <div class="row">
                         <div style="margin-right:20px" class="col-1">
-                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success"" />
-                        </div>    
+                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" "  />
+                        </div>
                         <div class="col-1">
                             <a class="btn btn-primary" href="IndexProfessor2.cshtml" role="button">Voltar</a>
                         </div>
                     </div>
-                
+
 
                 </form>
             </div>

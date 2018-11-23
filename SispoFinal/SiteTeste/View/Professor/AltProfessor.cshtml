@@ -1,27 +1,29 @@
 ﻿@{
-    Page.Title = "Alterar Aluno Cadastrado";
+    Page.Title = "Alterar Professores Cadastrados";
     Layout = "~/View/Shared/_Layout.cshtml";
 
-    int id = Convert.ToInt16(Request.QueryString["alunoID"]);
-    Aluno objAluno = new AlunoBO().Buscar(id);
+    int id = Convert.ToInt16(Request.QueryString["professorID"]);
+    Professor objProfessor = new ProfessorBO().Buscar(id);
 
     if (IsPost)
     {
-        objAluno.AlunoID = Convert.ToInt16(Request.Form["hfAlunoID"]);
-        objAluno.Nome = Request.Form["txtNome"];
-        objAluno.Matricula = Request.Form["txtMatricula"];
-        objAluno.Cpf = Request.Form["txtCPF"];
-        objAluno.Email = Request.Form["txtEmail"];
+        objProfessor.ProfessorID = Convert.ToInt16(Request.Form["hfProfessorID"]);
+        objProfessor.Nome = Request.Form["txtNome"];
+        objProfessor.Matricula = Request.Form["txtMatricula"];
+        objProfessor.Cpf = Request.Form["txtCPF"];
+        objProfessor.Email = Request.Form["txtEmail"];
+        objProfessor.MateriaAula = Request.Form["txtMateriaAula"];
+        objProfessor.DataNascimento = Convert.ToDateTime( Request.Form["txtDataNascimento"]);
 
-        bool sucesso = new AlunoBO().Gravar(objAluno);
+        bool sucesso = new ProfessorBO().Gravar(objProfessor);
 
         if (sucesso)
         {
-            Page.msgSucesso = "Aluno salvo com sucesso";
+            Page.msgSucesso = "Professor salvo com sucesso";
         }
         else
         {
-            Page.msgErro = "Erro ao gravar o aluno";
+            Page.msgErro = "Erro ao gravar o Professor";
         }
     }
 }
@@ -51,25 +53,42 @@
 <form method="post" action="">
     <div class="row">
         <div class="col-6">
-            <input type="hidden" id="hfAlunoID" name="hfAlunoID" value="@objAluno.AlunoID" />
+            <input type="hidden" id="hfProfessorID" name="hfProfessorID" value="@objProfessor.ProfessorID" />
             <label>Nome:</label>
-            <input type="text" name="txtNome" id="txtNome" class="form-control" value="@objAluno.Nome" />
+            <input type="text" name="txtNome" id="txtNome" class="form-control" value="@objProfessor.Nome" />
         </div>
         <div class="col-6">
             <label>Matrícula:</label>
-            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" value="@objAluno.Matricula" />
+            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" value="@objProfessor" />
         </div>
     </div>
     <div class="row">
         <div class="col-6">
             <label>CPF:</label>
-            <input type="text" name="txtCPF" id="txtCPF" class="form-control" value="@objAluno.Cpf" />
+            <input type="text" name="txtCPF" id="txtCPF" class="form-control" value="@objProfessor.Cpf" />
         </div>
         <div class="col-6">
             <label>E-mail:</label>
-            <input type="email" name="txtEmail" id="txtEmail" class="form-control" value="@objAluno.Email" />
+            <input type="email" name="txtEmail" id="txtEmail" class="form-control" value="@objProfessor.Email" />
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-6">
+            <label>Materia Aula:</label>
+            <input type="text" name="txtMateriaAula" id="txtMateriaAula" class="form-control" value="@objProfessor.MateriaAula" />
+        </div>
+        <div class="col-6">
+            <label>Data de Nascimento</label>
+            <input type="text" name="txtDataNascimento" id="txtDataNascimento" class="form-control" value="@objProfessor.DataNascimento.ToString("dd/MM/yyyy")" />
+        </div>
+    </div>
+
+
+
+
+
     <br />
     <div class="row">
         <div class="col-1">
