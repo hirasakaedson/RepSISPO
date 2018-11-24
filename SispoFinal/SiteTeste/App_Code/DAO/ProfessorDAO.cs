@@ -79,10 +79,10 @@ public class ProfessorDAO
         banco.Close();
         return objProfessor;
     }
-    public void Excluir(int alunoID)
+    public void Excluir(int professorID)
     {
-        var sql = "Delete from Alunos where alunoID=@0";
-        banco.Execute(sql, alunoID);
+        var sql = "Delete from Professor where professorID=@0";
+        banco.Execute(sql, professorID);
         banco.Close();
     }
 }

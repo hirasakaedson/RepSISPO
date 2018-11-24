@@ -35,9 +35,9 @@ public class ProfessorBO
     {
         return new ProfessorDAO().Buscar(ProfessorID);
     }
-    public void Excluir(int alunoID)
+    public void Excluir(int professorID)
     {
-        new AlunoDAO().Excluir(alunoID);  //regras devem ser colocadas aqui na BO
+        new ProfessorDAO().Excluir(professorID);  //regras devem ser colocadas aqui na BO
 
     }
 }

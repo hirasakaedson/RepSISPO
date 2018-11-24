@@ -74,7 +74,7 @@ public class AlunoDAO
     }
     public void Excluir(int alunoID)
     {
-        var sql = "Delete from Alunos where alunoID=@0";
+        var sql = "Delete from Aluno where alunoID=@0";
         banco.Execute(sql, alunoID);
         banco.Close();
     }
