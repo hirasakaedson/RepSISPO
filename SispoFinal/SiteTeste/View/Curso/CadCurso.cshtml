@@ -63,39 +63,117 @@
                         <h1>Cadastro de Cursos</h1>
                     </div>
                 </div>
-                <form method="post" action="">
-                    <div class="row">
-                        <div class="col-6">
-                            <label>Nome:</label>
-                            <input type="text" name="txtNome" id="txtNome" class="form-control" />
-                        </div>
-                        <div class="col-6">
-                            <label>Descrição:</label>
-                            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
-                        </div>
-                    </div>
-                    @*<div class="row">
-                        <div class="col-6">
-                            <label>CPF:</label>
-                            <input type="text" name="txtCPF" id="txtCPF" class="form-control" />
-                        </div>
-                        <div class="col-6">
-                            <label>E-mail:</label>
-                            <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
-                        </div>
-                    </div>*@
-                    <br />
-                    <div class="row">
-                        <div style="margin-right:20px" class="col-1">
-                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success"" />
-                        </div>    
-                        <div class="col-1">
-                            <a class="btn btn-primary" href="IndexCurso2.cshtml" role="button">Voltar</a>
-                        </div>
-                    </div>
-                
 
-                </form>
+                <div class="card-body">
+
+                    <form method="post" action="">
+                        <div class="row">
+                            <div class="col-6">
+                                <label>Nome:</label>
+                                <input type="text" name="txtNome" id="txtNome" class="form-control" />
+                            </div>
+                            <div class="col-6">
+                                <label>Descrição:</label>
+                                <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>Data Inicio:</label>
+                                <input type="date" name="dataInicio" id="dataInicio" class="form-control" />
+                            </div>
+                            <div class="col-6">
+                                <label>Dta Termino:</label>
+                                <input type="date" name="dataTermino" id="dataTermino" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-6">
+
+                                <label> Valor Mensalidade:</label>
+                                <input type="text" name="numVlrMensalidade" id="numVlrMensalidade" class="form-control" />
+
+
+                            </div>
+
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-2"><h5>   Buscar Disciplinas</h5>  </div>
+                            <div class="col-8">
+                                <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
+                            </div>
+                            <div class="col-1">
+                                <a href="#" class="btn btn-primary" onclick="addDisciplina()">Buscar Disciplina</a>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-2"><h5>   Buscar Alunos</h5>  </div>
+                            <div class="col-8">
+                                <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
+                            </div>
+                            <div class="col-1">
+                                <a href="#" class="btn btn-primary" onclick="addAlunos()">Buscar Alunos</a>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-2"><h5>   Buscar Professores</h5>  </div>
+                            <div class="col-8">
+                                <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
+                            </div>
+                            <div class="col-1">
+                                <a href="#" class="btn btn-primary" onclick="addProfessor()">Buscar Professor</a>
+                            </div>
+
+
+                        </div>
+
+
+                        <br />
+                        <div class="row">
+                            <div style="margin-right:20px" class="col-1">
+                                <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" "     />
+                            </div>
+                            <div class="col-1">
+                                <a class="btn btn-primary" href="IndexCurso2.cshtml" role="button">Voltar</a>
+                            </div>
+                        </div>
+
+                        <br />
+                        <hr />
+
+                        <table>
+                            <thead>
+                                <tr>  Cod         </tr>
+                                <tr>  Descricao Disciplina        </tr>
+
+                            </thead>
+
+
+
+
+
+                        </table>
+
+
+                    </form>
+
+                </div>
+
+
+
+
+
             </div>
         </div>
 
