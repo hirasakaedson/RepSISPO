@@ -8,11 +8,18 @@ using System.Web;
 /// </summary>
 public class Curso
 {
-   
 
-
-
-
+    public int CursoID { get; set; }
+    public string Descricao { get; set; }
+    public DateTime DataInicio { get; set; }
+    public DateTime DataFim { get; set; }
+    public Double ValorMensal { get; set; }
+    public IList<Disciplina> ListaDisciplinas { get; set; }
+    
+    public Curso()
+    {
+        ListaDisciplinas = new List<Disciplina>();
+    }
 
 
 }

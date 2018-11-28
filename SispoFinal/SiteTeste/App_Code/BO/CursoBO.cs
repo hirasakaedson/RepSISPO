@@ -8,10 +8,40 @@ using System.Web;
 /// </summary>
 public class CursoBO
 {
-    public CursoBO()
+   
+
+    public bool  Gravar(Curso objCurso)
     {
-        //
-        // TODO: Adicionar lógica do construtor aqui
-        //
+        if (objCurso.Descricao != string.Empty )
+        {
+            int sucesso = new CursoDAO().Gravar(objCurso);
+            if (sucesso != 0 )
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false; 
+        }
+        
     }
+
+
+    public IList<Curso> ListaCurso()
+    {
+
+        return new CursoDAO().ListaCurso();
+
+                          
+    }
+
+
+
+
 }

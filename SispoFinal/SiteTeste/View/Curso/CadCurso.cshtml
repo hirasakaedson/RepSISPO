@@ -1,24 +1,24 @@
 ﻿@{
-    Page.Title = "Cadastro de Disciplinas";
+    Page.Title = "Cadastro de Cursos";
     Layout = "~/View/Shared/_Layout.cshtml";
 
     if (IsPost)
     {
-        Aluno objAluno = new Aluno();
-        objAluno.Nome = Request.Form["txtNome"];
-        objAluno.Matricula = Request.Form["txtMatricula"];
-        objAluno.Cpf = Request.Form["txtCPF"];
-        objAluno.Email = Request.Form["txtEmail"];
+        Curso objCurso = new Curso();
+        objCurso.Descricao = Request.Form["txtNomeCurso"];
+        objCurso.DataInicio = Convert.ToDateTime( Request.Form["dataFim"]);
+        objCurso.DataFim = Convert.ToDateTime( Request.Form["dataInicio"]);
+        objCurso.ValorMensal = Convert.ToDouble( Request.Form["txtValorMensal"]);
 
-        bool sucesso = new AlunoBO().Gravar(objAluno);
+        bool sucesso = new CursoBO().Gravar(objCurso);
 
         if (sucesso)
         {
-            Page.msgSucesso = "Aluno salvo com sucesso";
+            Page.msgSucesso = "Curso salvo com sucesso";
         }
         else
         {
-            Page.msgErro = "Erro ao gravar o aluno";
+            Page.msgErro = "Erro ao gravar o Curso";
         }
     }
     <div class="col-12">
@@ -63,117 +63,39 @@
                         <h1>Cadastro de Cursos</h1>
                     </div>
                 </div>
-
-                <div class="card-body">
-
-                    <form method="post" action="">
-                        <div class="row">
-                            <div class="col-6">
-                                <label>Nome:</label>
-                                <input type="text" name="txtNome" id="txtNome" class="form-control" />
-                            </div>
-                            <div class="col-6">
-                                <label>Descrição:</label>
-                                <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
-                            </div>
+                <form method="post" action="">
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Nome:</label>
+                            <input type="text" name="txtNomeCurso" id="txtNomeCurso" class="form-control" />
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label>Data Inicio:</label>
-                                <input type="date" name="dataInicio" id="dataInicio" class="form-control" />
-                            </div>
-                            <div class="col-6">
-                                <label>Dta Termino:</label>
-                                <input type="date" name="dataTermino" id="dataTermino" class="form-control" />
-                            </div>
+                        <div class="col-6">
+                            <label>Valor Mensal:</label>
+                            <input type="text" name="txtValorMensal" id="txtValorMensal" class="form-control" />
                         </div>
-
-                        <div class="row">
-
-                            <div class="col-6">
-
-                                <label> Valor Mensalidade:</label>
-                                <input type="text" name="numVlrMensalidade" id="numVlrMensalidade" class="form-control" />
-
-
-                            </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>Data De Inicio</label>
+                            <input type="date" name="dataInicio" id="dataInicio" class="form-control" />
                         </div>
-
-                        <br />
-
-                        <div class="row">
-                            <div class="col-2"><h5>   Buscar Disciplinas</h5>  </div>
-                            <div class="col-8">
-                                <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
-                            </div>
-                            <div class="col-1">
-                                <a href="#" class="btn btn-primary" onclick="addDisciplina()">Buscar Disciplina</a>
-                            </div>
-
-
+                        <div class="col-6">
+                            <label>E-mail:</label>
+                            <input type="date" name="dataFim" id="dataFim" class="form-control" />
                         </div>
-
-                        <div class="row">
-                            <div class="col-2"><h5>   Buscar Alunos</h5>  </div>
-                            <div class="col-8">
-                                <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
-                            </div>
-                            <div class="col-1">
-                                <a href="#" class="btn btn-primary" onclick="addAlunos()">Buscar Alunos</a>
-                            </div>
-
-
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div style="margin-right:20px" class="col-1">
+                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success"/>
+                        </div>    
+                        <div class="col-1">
+                            <a class="btn btn-primary" href="IndexCurso2.cshtml" role="button">Voltar</a>
                         </div>
+                    </div>
+                
 
-                        <div class="row">
-                            <div class="col-2"><h5>   Buscar Professores</h5>  </div>
-                            <div class="col-8">
-                                <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
-                            </div>
-                            <div class="col-1">
-                                <a href="#" class="btn btn-primary" onclick="addProfessor()">Buscar Professor</a>
-                            </div>
-
-
-                        </div>
-
-
-                        <br />
-                        <div class="row">
-                            <div style="margin-right:20px" class="col-1">
-                                <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" "     />
-                            </div>
-                            <div class="col-1">
-                                <a class="btn btn-primary" href="IndexCurso2.cshtml" role="button">Voltar</a>
-                            </div>
-                        </div>
-
-                        <br />
-                        <hr />
-
-                        <table>
-                            <thead>
-                                <tr>  Cod         </tr>
-                                <tr>  Descricao Disciplina        </tr>
-
-                            </thead>
-
-
-
-
-
-                        </table>
-
-
-                    </form>
-
-                </div>
-
-
-
-
-
+                </form>
             </div>
         </div>
 

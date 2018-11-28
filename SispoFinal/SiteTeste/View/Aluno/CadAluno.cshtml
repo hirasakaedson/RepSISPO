@@ -1,6 +1,8 @@
 ﻿@{
-    Page.Title = "Cadastro de Disciplinas";
+    Page.Title = "Cadastro de Alunos";
     Layout = "~/View/Shared/_Layout.cshtml";
+
+    var lista = new CursoBO().ListaCurso();
 
     if (IsPost)
     {
@@ -41,131 +43,158 @@
 
 
 
-<div class="container">
-    <div class="col-12">
+    <div class="container">
+        <div class="col-12">
 
+            <div class="row">
+                <div class="col-3" style="padding-top:30px;">
+
+                    <a href="~/View/Professor/IndexProfessor2.cshtml">
+                        <img src="~/Img/aluno.png" width="80" height="80" alt="">
+                    </a>
+
+                </div>
+
+
+                <div class="col-9" style="padding-top:30px;">
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>Cadastro de alunos</h1>
+                        </div>
+                    </div>
+                    <form method="post" action="">
+                        <div class="row">
+                            <div class="col-6">
+                                <label>Nome:</label>
+                                <input type="text" name="txtNome" id="txtNome" class="form-control" />
+                            </div>
+                            <div class="col-6">
+                                <label>Matrícula:</label>
+                                <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>CPF:</label>
+                                <input type="text" name="txtCPF" id="txtCPF" class="form-control" />
+                            </div>
+                            <div class="col-6">
+                                <label>E-mail:</label>
+                                <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-2"><h5>   Incluir Curso </h5>  </div>
+                            <div class="col-8">
+                                <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
+                            </div>
+                            <div class="col-1">
+
+
+                                <button type="button" id="btnMostrarModal" class="btn btn-primary" data-toggle="modal" onclick="mostrarModal()"> Buscar Curso </button>
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+                        <br />
+                        <div class="row">
+                            <div style="margin-right:20px" class="col-1">
+                                <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" />
+                            </div>
+                            <div class="col-1">
+                                <a class="btn btn-primary" href="IndexAluno.cshtml" role="button">Voltar</a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+       
         <div class="row">
-            <div class="col-3" style="padding-top:30px;">
 
-                <a href="~/View/Professor/IndexProfessor2.cshtml">
-                    <img src="~/Img/aluno.png" width="80" height="80" alt="">
-                </a>
+            <div class="col-12">
+                <!--  Modal Inicio-->
+                
+
+                <div class="modal" id="buscarCursoModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h4 class="modal-title"> Selecionar Curso</h4>
+                                <button type="button" id="FechaModal" class="close" data-dismiss="modal" onclick="fecharModal()"> &times; </button>
+
+                            </div>
+
+                            <div class="modal-body">
+
+                                <select id="slCursos">
+                                    <option value="0"> Selecione.... </option>
+                                   @foreach (var item in lista)
+                                   {
+                                       <option value="'@item.CursoID'" > @item.Descricao  </option>
+                                   }
+
+
+
+                                </select>
+
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button"  class="close" data-dismiss="modal" onclick="fecharModal()">  Fechar</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+                <!-- Modal Fim -->
+
+
 
             </div>
 
 
-            <div class="col-9" style="padding-top:30px;">
-                <div class="row">
-
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <h1>Cadastro de alunos</h1>
-                    </div>
-                </div>
-                <form method="post" action="">
-                    <div class="row">
-                        <div class="col-6">
-                            <label>Nome:</label>
-                            <input type="text" name="txtNome" id="txtNome" class="form-control" />
-                        </div>
-                        <div class="col-6">
-                            <label>Matrícula:</label>
-                            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label>CPF:</label>
-                            <input type="text" name="txtCPF" id="txtCPF" class="form-control" />
-                        </div>
-                        <div class="col-6">
-                            <label>E-mail:</label>
-                            <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
-                        </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
-                        <div class="col-2"><h5>   Incluir Curso</h5>  </div>
-                        <div class="col-8">
-                            <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
-                        </div>
-                        <div class="col-1">
-
-
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalBuscarCurso" > Buscar Curso</a>
-                        </div>
-
-
-
-                    </div>
-
-
-
-
-
-                    <br />
-                    <div class="row">
-                        <div style="margin-right:20px" class="col-1">
-                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" />
-                        </div>
-                        <div class="col-1">
-                            <a class="btn btn-primary" href="IndexAluno.cshtml" role="button">Voltar</a>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-                </form>
-            </div>
-        </div>
-
-
-        <!--  Modal Inicio-->
-        <div class="modal" id="modalBuscarCurso" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5> Cursos  </h5>
-                        <button type="button" class="close" data-dismiss="modal"> <span>  X </span> </button>
-                    </div>
-
-                    <div class="modal-body">
-
-                        <select id="slCursos">
-                            <option value="0"> Selecione.... </option>
-
-
-
-                        </select>
-
-                    </div>
-
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">  Fechar</button>
-                    </div>
-
-                </div>
-
-
-            </div>
 
 
 
         </div>
-        <!-- Modal Fim -->
+  
+
+
 
 
     </div>
-</div>
-
 
 
 
