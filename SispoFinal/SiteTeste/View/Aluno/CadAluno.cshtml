@@ -3,6 +3,7 @@
     Layout = "~/View/Shared/_Layout.cshtml";
 
     var lista = new CursoBO().ListaCurso();
+    Response.Write(Json.Encode(lista));
 
     if (IsPost)
     {
