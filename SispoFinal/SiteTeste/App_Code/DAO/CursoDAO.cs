@@ -36,6 +36,7 @@ public class CursoDAO
 
                 objCurso = new Curso
                 {
+                    CursoID = item.cursoID,
                     Descricao = item.descricao,
                     DataInicio = item.dtInicio,
                     DataFim = item.dtFinal,

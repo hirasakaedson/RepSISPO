@@ -4,6 +4,7 @@
 
     int id = Convert.ToInt16(Request.QueryString["alunoID"]);
     Aluno objAluno = new AlunoBO().Buscar(id);
+    var lista = new CursoBO().ListaCurso();
 
     if (IsPost)
     {
@@ -12,16 +13,17 @@
         objAluno.Matricula = Request.Form["txtMatricula"];
         objAluno.Cpf = Request.Form["txtCPF"];
         objAluno.Email = Request.Form["txtEmail"];
+        objAluno.objCurso.CursoID = Convert.ToInt16(Request.Form["hfCursoID"]);
 
         bool sucesso = new AlunoBO().Gravar(objAluno);
 
         if (sucesso)
         {
-            Page.msgSucesso = "Aluno salvo com sucesso";
+            Page.msgSucesso = "Aluno Alterado com sucesso";
         }
         else
         {
-            Page.msgErro = "Erro ao gravar o aluno";
+            Page.msgErro = "Erro ao Alterar o aluno";
         }
     }
 }
@@ -48,7 +50,13 @@
         <h1>Alterar Aluno</h1>
     </div>
 </div>
+
 <form method="post" action="">
+
+    <!--    receber id_curso que vem do javascript   </p>  -->
+    <input type="hidden" id="hfCursoID" name="hfCursoID" value="" />
+
+
     <div class="row">
         <div class="col-6">
             <input type="hidden" id="hfAlunoID" name="hfAlunoID" value="@objAluno.AlunoID" />
@@ -69,7 +77,32 @@
             <label>E-mail:</label>
             <input type="email" name="txtEmail" id="txtEmail" class="form-control" value="@objAluno.Email" />
         </div>
+
     </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-2"><h5>   Incluir Curso </h5>  </div>
+        <div class="col-8">
+            <input type="text" name="txtBuscaCurso" id="txtBuscaCurso" class="form-control" readonly />
+        </div>
+        <div class="col-1">
+
+
+            <button type="button" id="btnMostrarModal" class="btn btn-primary" data-toggle="modal" onclick="mostrarModal()"> Buscar Curso </button>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
     <br />
     <div class="row">
         <div class="col-1">
@@ -80,3 +113,62 @@
         </div>
     </div>
 </form>
+
+
+
+
+<div class="row">
+
+    <div class="col-12">
+        <!--  Modal Inicio-->
+
+
+        <div class="modal" id="buscarCursoModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title"> Selecionar Curso</h4>
+                        <button type="button" id="FechaModal" class="close" data-dismiss="modal" onclick="fecharModal()"> &times; </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <select id="slCursos" onchange="receberValorModal()">
+                            <option value="0"> Selecione.... </option>
+                            @foreach (var item in lista)
+                            {
+                                <option value="@item.CursoID"> @item.Descricao  </option>
+                            }
+
+
+
+                        </select>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="close" data-dismiss="modal" onclick="fecharModal()">  Fechar</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <!-- Modal Fim -->
+
+
+
+    </div>
+
+
+
+
+
+</div>
+

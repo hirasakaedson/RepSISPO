@@ -13,13 +13,13 @@ public class AlunoDAO
         int sucesso;
         if (obj.AlunoID == 0)
         {
-            var sql = "Insert Into Aluno (nome,matricula,cpf,email)values(@0,@1,@2,@3)";
-            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email);
+            var sql = "Insert Into Aluno (nome,matricula,cpf,email, id_Curso)values(@0,@1,@2,@3,@4)";
+            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email, obj.objCurso.CursoID);
         }
         else
         {
-            var sql = "Update aluno Set nome=@0, matricula=@1, cpf=@2, email=@3 Where alunoID=@4";
-            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email,obj.AlunoID);
+            var sql = "Update aluno Set nome=@0, matricula=@1, cpf=@2, email=@3 , id_Curso = @4 Where alunoID=@5";
+            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email,obj.objCurso.CursoID , obj.AlunoID);
         }
         
         banco.Close();
