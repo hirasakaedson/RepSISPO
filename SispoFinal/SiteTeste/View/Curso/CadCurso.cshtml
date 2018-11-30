@@ -4,13 +4,25 @@
 
     if (IsPost)
     {
-        Curso objCurso = new Curso();
-        objCurso.Descricao = Request.Form["txtNomeCurso"];
-        objCurso.DataInicio = Convert.ToDateTime( Request.Form["dataFim"]);
-        objCurso.DataFim = Convert.ToDateTime( Request.Form["dataInicio"]);
-        objCurso.ValorMensal = Convert.ToDouble( Request.Form["txtValorMensal"]);
+        Curso curso = (Curso)Session["curso"];
+        bool sucesso = false;
 
-        bool sucesso = new CursoBO().Gravar(objCurso);
+        if (curso.ListaDisciplinas.Count > 0)
+        {
+
+            var objCurso = new Curso();
+            objCurso.Descricao = Request.Form["txtNomeCurso"];
+            objCurso.DataInicio = Convert.ToDateTime(Request.Form["dataFim"]);
+            objCurso.DataFim = Convert.ToDateTime(Request.Form["dataInicio"]);
+            objCurso.ValorMensal = Convert.ToDouble(Request.Form["txtValorMensal"]);
+
+            var objDisciplina = new Disciplina(objCurso);
+            sucesso = new CursoBO().Gravar(objCurso);
+        }
+
+
+
+
 
         if (sucesso)
         {
@@ -101,7 +113,7 @@
 
         <br />
 
-        <!-- Tabela para cadastras as disciplinas curso -->
+        <!-- Tabela para cadastrar as disciplinas curso -->
         <div class="row">
             
             <div class="col-12">

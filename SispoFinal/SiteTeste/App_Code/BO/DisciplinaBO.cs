@@ -9,7 +9,29 @@ using System.Web;
 public class DisciplinaBO
 {
     
+    public bool Gravar(Disciplina objDisciplina)
+    {
+        if (objDisciplina.CargaHoraria != string.Empty && objDisciplina.Nome != string.Empty)
+        {
+            int sucesso = new DisciplinaDAO().Gravar(objDisciplina);
+            if (sucesso !=0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        else
+        {
+            return false;
+        }
+
+
+
+    }
 
 
 

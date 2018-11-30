@@ -18,6 +18,7 @@ public class Disciplina
        
     public int DisciplinaID { get; set; }
     public string Nome { get; set; }
+    public string CargaHoraria { get; set; }
     public Curso objCurso { get; set; }
 
 
