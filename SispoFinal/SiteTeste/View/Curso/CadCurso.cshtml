@@ -68,7 +68,7 @@
 
             <div class="col-9" style="padding-top:30px;">
                 <div class="row">
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -97,39 +97,80 @@
                         </div>
                     </div>
                     <br />
+
+                    <div class="row">
+                        <div class="col-4"><label>Buscar Disciplina</label></div>
+                        <div class="col-4">
+                            <input type="text" name="txtBuscaDisciplina" id="txtBuscaDisciplina" class="form-control" />
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="btn btn-primary" onclick="addDisciplina()">Buscar Disciplina</a>
+                        </div>
+                    </div>
+
+
+                    <br />
                     <div class="row">
                         <div style="margin-right:20px" class="col-1">
-                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success"/>
-                        </div>    
+                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" />
+                        </div>
                         <div class="col-1">
                             <a class="btn btn-primary" href="IndexCurso2.cshtml" role="button">Voltar</a>
                         </div>
                     </div>
-                
+
 
                 </form>
             </div>
         </div>
 
+
+        <!-- Requisição AJAX -->
+
+        <script>
+            function addDisciplina() {
+                var xhttp = new XMLHttpRequest();
+                var desc = document.getElementById('txtBuscaDisciplina').value;
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var disciplina = JSON.parse(xhttp.responseText); //pegando os dados JSON
+                        var tbody = document.getElementById("disciplinaTbody");
+                        tbody.innerHTML += "<tr> <td>" + disciplina.disciplinaID + "</td> <td>" + disciplina.nome + "</td></tr>";
+                    }
+                };
+                xhttp.open("GET", "BuscaDisciplina.cshtml?desc=" + desc, true);
+                xhttp.send();
+            }
+
+
+        </script>
+
+
+
+
+
+
+
         <br />
 
         <!-- Tabela para cadastrar as disciplinas curso -->
         <div class="row">
-            
+
             <div class="col-12">
                 <table class="table table-hover">
                     <thead>
-                       <tr>
-                           <th>  ID  </th>
-                           <th>  Descricao </th>
-                           <th>  Ações  </th>
+                        <tr>
+                            <th>  ID  </th>
+                            <th>  Descricao </th>
+                            <th>  Ações  </th>
 
-                       </tr>
+                        </tr>
 
 
-                    </thead>                                                      
+                    </thead>
 
-                    <tbody>
+                    <tbody id="disciplinasTbody">
+
 
 
 
@@ -138,16 +179,16 @@
 
 
                 </table>
-                                                          
-                
+
+
             </div>
 
 
 
 
         </div>
-    
-    
+
+
     </div>
 </div>
 

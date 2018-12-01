@@ -34,7 +34,10 @@ public class DisciplinaBO
     }
 
 
-
+    public Disciplina Buscar(string nome)
+    {
+        return new DisciplinaDAO().Buscar(nome);
+    }
 
 
 }

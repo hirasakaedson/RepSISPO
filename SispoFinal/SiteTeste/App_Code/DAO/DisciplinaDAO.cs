@@ -31,4 +31,26 @@ public class DisciplinaDAO
 
 
 
+    public Disciplina Buscar(string nome)
+    {
+        var sql = "select * from Disciplina where nome =  @0";
+        var resultado = banco.QuerySingle(sql, nome);
+
+        Disciplina obj = new Disciplina(null);
+        obj.CargaHoraria = resultado.cargaHoraria;
+        obj.DisciplinaID = resultado.disciplinaID;
+        obj.Nome = resultado.nome;
+
+        banco.Close();
+        return obj;
+
+
+
+
+        
+
+    }
+
+
+   
 }

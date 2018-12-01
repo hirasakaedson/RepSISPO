@@ -1,0 +1,26 @@
+﻿@{
+    string descricao = Request.QueryString["desc"];
+    var disciplina = new DisciplinaDAO().Buscar(descricao);
+
+    Curso curso;
+
+    if (Session["curso"] == null)
+    {
+        curso = new Curso();
+        
+    }
+    else
+    {
+        curso = (Curso)Session["curso"];
+    }
+
+    Disciplina objDisciplina = new Disciplina(curso);
+    objDisciplina.Nome = disciplina.Nome;
+
+    curso.ListaDisciplinas.Add(objDisciplina);
+
+    Session["cuso"] = curso;
+
+
+    Response.Write(Json.Encode(disciplina));
+}
