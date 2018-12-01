@@ -13,6 +13,7 @@ public class Aluno
     public string Matricula { get; set; }
     public string Cpf { get; set; }
     public string Email { get; set; }
+    public Curso objCurso { get; set; }
     public IList<Emprestimo> ListaEmprestimo { get; set; }
 
     public bool Gravar()
@@ -21,5 +22,9 @@ public class Aluno
 
     }
 
+    public Aluno()
+    {
+        objCurso = new Curso();
+    }
 
 }

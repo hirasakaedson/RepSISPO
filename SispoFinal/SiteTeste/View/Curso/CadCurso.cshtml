@@ -4,13 +4,25 @@
 
     if (IsPost)
     {
-        Curso objCurso = new Curso();
-        objCurso.Descricao = Request.Form["txtNomeCurso"];
-        objCurso.DataInicio = Convert.ToDateTime( Request.Form["dataFim"]);
-        objCurso.DataFim = Convert.ToDateTime( Request.Form["dataInicio"]);
-        objCurso.ValorMensal = Convert.ToDouble( Request.Form["txtValorMensal"]);
+        Curso curso = (Curso)Session["curso"];
+        bool sucesso = false;
 
-        bool sucesso = new CursoBO().Gravar(objCurso);
+        if (curso.ListaDisciplinas.Count > 0)
+        {
+
+            var objCurso = new Curso();
+            objCurso.Descricao = Request.Form["txtNomeCurso"];
+            objCurso.DataInicio = Convert.ToDateTime(Request.Form["dataFim"]);
+            objCurso.DataFim = Convert.ToDateTime(Request.Form["dataInicio"]);
+            objCurso.ValorMensal = Convert.ToDouble(Request.Form["txtValorMensal"]);
+
+            var objDisciplina = new Disciplina(objCurso);
+            sucesso = new CursoBO().Gravar(objCurso);
+        }
+
+
+
+
 
         if (sucesso)
         {
@@ -100,6 +112,44 @@
         </div>
 
 
+<<<<<<< HEAD
+=======
+        <!-- Tabela para cadastrar as disciplinas curso -->
+        <div class="row">
+            
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                       <tr>
+                           <th>  ID  </th>
+                           <th>  Descricao </th>
+                           <th>  Ações  </th>
+
+                       </tr>
+
+
+                    </thead>                                                      
+
+                    <tbody>
+
+
+
+                    </tbody>
+
+
+
+                </table>
+                                                          
+                
+            </div>
+
+
+
+
+        </div>
+    
+    
+>>>>>>> master
     </div>
 </div>
 

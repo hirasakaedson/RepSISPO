@@ -10,7 +10,7 @@ public class AlunoBO
 {
     public bool Gravar(Aluno obj)
     { 
-        if (obj.Nome != string.Empty && obj.Cpf != string.Empty)
+        if (obj.Nome != string.Empty && obj.Cpf != string.Empty && obj.objCurso.CursoID != 0)
         {
             int sucesso = new AlunoDAO().Gravar(obj);
             if (sucesso != 0)

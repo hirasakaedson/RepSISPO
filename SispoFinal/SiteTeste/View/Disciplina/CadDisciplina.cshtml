@@ -4,21 +4,19 @@
 
     if (IsPost)
     {
-        Aluno objAluno = new Aluno();
-        objAluno.Nome = Request.Form["txtNome"];
-        objAluno.Matricula = Request.Form["txtMatricula"];
-        objAluno.Cpf = Request.Form["txtCPF"];
-        objAluno.Email = Request.Form["txtEmail"];
+        Disciplina objDisciplina = new Disciplina(null);
+        objDisciplina.Nome = Request.Form["txtNome"];
+        objDisciplina.CargaHoraria = Request.Form["txtCargaHoraria"];
 
-        bool sucesso = new AlunoBO().Gravar(objAluno);
+        bool sucesso = new DisciplinaBO().Gravar(objDisciplina);
 
         if (sucesso)
         {
-            Page.msgSucesso = "Aluno salvo com sucesso";
+            Page.msgSucesso = "Disciplina salvo com sucesso";
         }
         else
         {
-            Page.msgErro = "Erro ao gravar o aluno";
+            Page.msgErro = "Erro ao gravar o Disciplina";
         }
     }
     <div class="col-12">
@@ -56,7 +54,7 @@
 
             <div class="col-9" style="padding-top:30px;">
                 <div class="row">
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -70,33 +68,24 @@
                             <input type="text" name="txtNome" id="txtNome" class="form-control" />
                         </div>
                         <div class="col-6">
-                            <label>Descrição:</label>
-                            <input type="text" name="txtMatricula" id="txtMatricula" class="form-control" />
+                            <label>Carga Horaria:</label>
+                            <input type="text" name="txtCargaHoraria" id="txtCargaHoraria" class="form-control" />
                         </div>
                     </div>
-                    @*<div class="row">
-                        <div class="col-6">
-                            <label>CPF:</label>
-                            <input type="text" name="txtCPF" id="txtCPF" class="form-control" />
-                        </div>
-                        <div class="col-6">
-                            <label>E-mail:</label>
-                            <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
-                        </div>
-                    </div>
+                   
                     <br />
-                    <div class="row">
-                        <div style="margin-right:20px" class="col-1">
-                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success"" />
-                        </div>    
-                        <div class="col-1">
-                            <a class="btn btn-primary" href="IndexDisciplina2.cshtml" role="button">Voltar</a>
-                        </div>
-                    </div>*@
-                
 
-                </form>
+                    <div class="row">
+                    <div style="margin-right:20px" class="col-1">
+                        <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" />
+                    </div>
+                    <div class="col-1">
+                        <a class="btn btn-primary" href="IndexDisciplina2.cshtml" role="button">Voltar</a>
+                    </div>
             </div>
+
+            </form>
+        </div>
         </div>
 
 
