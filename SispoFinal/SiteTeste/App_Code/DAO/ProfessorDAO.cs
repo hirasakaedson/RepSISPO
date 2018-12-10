@@ -15,13 +15,13 @@ public class ProfessorDAO
         int sucesso;
         if (obj.ProfessorID == 0)
         {
-            var sql = "Insert Into Professor (nome,matricula,cpf,email, dataNascimento, formacao)values(@0,@1,@2,@3,@4,@5)";
-            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email, obj.DataNascimento, obj.MateriaAula);
+            var sql = "Insert Into Professor (nome,matricula,cpf,email, dataNascimento, disicplina)values(@0,@1,@2,@3,@4,@5)";
+            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email, obj.DataNascimento, obj.ObjDisciplina.Nome);
         }
         else
         {
-            var sql = "Update Professor Set nome=@0, matricula=@1, cpf=@2, email=@3 , dataNascimento=@4, formacao=@5 Where ProfessorID=@6";
-            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email, obj.DataNascimento, obj.MateriaAula, obj.ProfessorID);
+            var sql = "Update Professor Set nome=@0, matricula=@1, cpf=@2, email=@3 , dataNascimento=@4, disciplina=@5 Where ProfessorID=@6";
+            sucesso = banco.Execute(sql, obj.Nome, obj.Matricula, obj.Cpf, obj.Email, obj.DataNascimento, obj.ObjDisciplina.Nome, obj.ProfessorID);
         }
 
         banco.Close();
@@ -47,7 +47,7 @@ public class ProfessorDAO
                     Cpf = item.cpf,
                     Email = item.email, 
                     DataNascimento = item.dataNascimento, 
-                    MateriaAula = item.formacao 
+                    
                 };
                 lista.Add(objProfessor);
             }
@@ -72,8 +72,8 @@ public class ProfessorDAO
             Matricula = resultado.matricula,
             Cpf = resultado.cpf,
             Email = resultado.email,
-            DataNascimento = resultado.dataNascimento,
-            MateriaAula = resultado.formacao , 
+            DataNascimento = resultado.dataNascimento
+          
 
         };
         banco.Close();

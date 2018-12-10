@@ -8,14 +8,19 @@ using System.Web;
 /// </summary>
 public class Professor
 {
+    
+
     public int ProfessorID { get; set; }
     public string Nome { get; set; }
     public string Matricula { get; set; }
     public string Cpf { get; set; }
     public string Email { get; set; }
-    public string MateriaAula { get; set; }
+    public Disciplina ObjDisciplina { get; set; }
     public DateTime DataNascimento { get; set; }
     public IList<Emprestimo> ListaEmprestimo { get; set; }
+
+
+
 
     public int Gravar()
     {

@@ -9,7 +9,7 @@
         ObjProfessor.Matricula = Request.Form["txtMatricula"];
         ObjProfessor.Cpf = Request.Form["txtCPF"];
         ObjProfessor.Email = Request.Form["txtEmail"];
-        ObjProfessor.MateriaAula = Request.Form["txtMateriaAula"];
+        ObjProfessor.ObjDisciplina.Nome = Request.Form["txtDisciplina"];
         ObjProfessor.DataNascimento =Convert.ToDateTime( Request.Form["txtDataNascimento"]);
 
 
@@ -83,29 +83,64 @@
                             <input type="text" name="txtCPF" id="txtCPF" class="form-control" />
                         </div>
                         <div class="col-6">
-                            <label>E-mail:</label>
-                            <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col-6">
-                            <label>Materia Aula:</label>
-                            <input type="text" name="txtMateriaAula" id="txtMateriaAula" class="form-control" />
-                        </div>
-                        <div class="col-6">
                             <label>Data de Nascimento</label>
                             <input type="date" name="txtDataNascimento" id="txtDataNascimento" class="form-control" />
                         </div>
+
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label>E-mail:</label>
+                            <input type="email" name="txtEmail" id="txtEmail" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-2"><h5>   Incluir Curso </h5>  </div>
+                        <div class="col-5">
+                            <input type="text" name="txtBuscaCurso" id="txtBuscaCurso" class="form-control" readonly />
+                        </div>
+                        <div class="col-1">
+
+
+                            <button type="button" id="btnMostrarModal" class="btn btn-primary" data-toggle="modal" onclick="mostrarModal()"> Buscar Curso </button>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-2"><h5>   Incluir Disicplina </h5>  </div>
+                        <div class="col-5">
+                            <input type="text" name="txtBuscaCurso" id="txtBuscaCurso" class="form-control" readonly />
+                        </div>
+                        <div class="col-1">
+
+
+                            <button type="button" id="btnMostrarModal" class="btn btn-primary" data-toggle="modal" onclick="mostrarModal()"> Buscar Disicplina </button>
+
+                        </div>
+
+
+
+                    </div>
+
+
 
 
 
                     <br />
                     <div class="row">
                         <div style="margin-right:20px" class="col-1">
-                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success" "  />
+                            <input type="submit" name="btnGravar" value="Gravar" class="btn btn-success"     />
                         </div>
                         <div class="col-1">
                             <a class="btn btn-primary" href="IndexProfessor2.cshtml" role="button">Voltar</a>
